@@ -21,10 +21,10 @@ module alu #(
             f_c <= 1'b0;
         end else if (en) begin
             case (op)
-                AND: out <= a + b;
-                SUB: out <= a - b;
-                OR: out <= a | b;
-                AND: out <= a & b;
+                AND: {f_c, out} <= a + b;
+                SUB: {f_c, out} <= a - b;
+                OR: {f_c, out} <= {0, a | b};
+                AND: {f_c, out} <= {0, a & b};
             endcase
             
             f_z = (op == SUB) & en ? (a == b) : 1'b0;
