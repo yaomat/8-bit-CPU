@@ -3,6 +3,7 @@ module cpu_reg(
     input logic rst,
     input logic [2:0] reg_in,
     input logic [2:0] reg_out,
+    input logic [2:0] reg_sel,
     input logic en_in,
     input logic en_out,
     output logic [7:0] a,
@@ -18,7 +19,7 @@ assign data = (en_out && !en_in) ? (data_out) : 8'bZ;
 assign data_in = data;
 
 assign a = reg_x[0];
-assign b = reg_x[1];
+assign b = reg_x[reg_sel];
 
 always_ff @ (posedge clk or posedge rst) begin
     if (rst) begin

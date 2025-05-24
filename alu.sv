@@ -6,7 +6,7 @@ module alu #(
     parameter XOR = 3'b100,
     parameter NOT = 3'b101,
     parameter INC = 3'b110,
-    parameter DEC = 3'b111,
+    parameter DEC = 3'b111
 )(
     input logic en,
     input logic clk,
@@ -34,9 +34,9 @@ module alu #(
                 OR:  {f_c, buffer} <= {0, a | b};
                 AND: {f_c, buffer} <= {0, a & b};
                 XOR: {f_c, buffer} <= {0, a ^ b};
-                NOT: {f_c, buffer} <= {0, ~a};
-                INC: {f_c, buffer} <= a + 1;
-                DEC: {f_c, buffer} <= a - 1;
+                NOT: {f_c, buffer} <= {0, ~b};
+                INC: {f_c, buffer} <= b + 1;
+                DEC: {f_c, buffer} <= b - 1;
             endcase
             f_z <= &(~buffer);
         end

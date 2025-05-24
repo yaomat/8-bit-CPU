@@ -2,8 +2,8 @@
     input logic [7:0] in,
     input logic clk,
     input logic rst,
-    input logic bw_en, //write to the bus
-    input logic br_en, //read from the bus
+    input logic w_en,
+    input logic r_en,
     output logic [7:0] out 
  );
 
@@ -13,9 +13,9 @@
         if (rst) begin
             out <= 8'b0; 
             hold <= 8'b0;
-        end else if (bw_en) begin 
+        end else if (w_en) begin 
             out <= hold;
-        end else if (br_en) begin
+        end else if (r_en) begin
             hold <= in;
         end
     end
